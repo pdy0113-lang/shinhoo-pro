@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>박신후 | Contact me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Design tokens — from DESIGN-notion.md */
+  :root {
+    --primary: #0075de;
+    --primary-active: #005bab;
+    --secondary: #213183;
+    --on-primary: #ffffff;
+    --canvas: #ffffff;
+    --canvas-soft: #f6f5f4;
+    --surface: #ffffff;
+    --ink: #000000;
+    --ink-secondary: #31302e;
+    --ink-muted: #615d59;
+    --hairline: #e6e6e6;
+    --input-border: #dddddd;
+    --accent-sky: #62aef0;
+    --accent-purple: #d6b6f6;
+    --accent-purple-deep: #391c57;
+    --accent-pink: #ff64c8;
+    --accent-orange: #dd5b00;
+    --accent-orange-deep: #793400;
+    --accent-teal: #2a9d99;
+    --accent-green: #1aae39;
+    --r-xs: 4px; --r-sm: 5px; --r-md: 8px; --r-lg: 12px; --r-xl: 16px; --r-full: 9999px;
+    --shadow-1: 0 0.175px 1.041px rgba(0,0,0,0.01), 0 0.8px 2.925px rgba(0,0,0,0.02), 0 2.025px 7.847px rgba(0,0,0,0.027), 0 4px 18px rgba(0,0,0,0.04);
+    --font: Inter, "Noto Sans KR", -apple-system, system-ui, "Segoe UI", "Malgun Gothic", Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--canvas-soft); color: var(--ink);
+    font-family: var(--font); font-size: 16px; line-height: 1.6;
+    word-break: keep-all; overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--primary); }
+  :focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; border-radius: var(--r-sm); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  h1, h2 { margin: 0; text-wrap: balance; }
+  p { margin: 0 0 10px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .skip { position: absolute; left: 12px; top: -60px; background: var(--primary); color: #fff; padding: 10px 14px; border-radius: var(--r-md); z-index: 30; }
+  .skip:focus { top: 12px; }
+
+  /* nav-bar */
+  .nav { position: sticky; top: 0; z-index: 10; background: var(--canvas); border-bottom: 1px solid var(--hairline); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
+  .brand { font-weight: 700; font-size: 18px; letter-spacing: -0.25px; color: var(--ink); text-decoration: none; }
+  .menu { display: flex; align-items: center; gap: 8px; }
+  .menu a { font-size: 15px; font-weight: 500; color: var(--ink); text-decoration: none; padding: 0 10px; min-height: 44px; display: inline-flex; align-items: center; }
+  .menu .utility { background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--r-md); padding: 0 14px; min-height: 40px; }
+  .menu .utility[aria-current="page"] { border-color: var(--primary); color: var(--primary); }
+
+  .badge {
+    display: inline-block; background: var(--surface); color: var(--primary); border: 1px solid var(--hairline);
+    font-size: 12px; font-weight: 600; line-height: 1.33; letter-spacing: 0.125px; border-radius: var(--r-full); padding: 4px 10px;
+  }
+
+  /* page header on warm canvas */
+  .page-head { position: relative; padding: 64px 0 40px; }
+  .page-head h1 { font-size: clamp(36px, 6vw, 54px); font-weight: 700; line-height: 1.12; letter-spacing: -0.034em; margin: 18px 0 14px; max-width: 14em; }
+  .lead { color: var(--ink-muted); font-size: 18px; max-width: 32em; margin: 0; }
+  .stickers { position: absolute; right: 0; top: 36px; width: 220px; height: 150px; }
+  .sticker { position: absolute; width: 56px; height: 56px; border-radius: var(--r-lg); display: grid; place-items: center; box-shadow: var(--shadow-1); }
+  .sticker svg { width: 28px; height: 28px; }
+  .s1 { background: var(--accent-purple); color: var(--accent-purple-deep); right: 90px; top: 0; transform: rotate(-8deg); }
+  .s2 { background: var(--accent-pink); color: #3a0a2b; right: 10px; top: 28px; transform: rotate(7deg); }
+  .s3 { background: var(--accent-teal); color: #fff; right: 120px; top: 84px; transform: rotate(6deg); }
+  .s4 { background: var(--accent-sky); color: #0b2a47; right: 40px; top: 96px; transform: rotate(-5deg); }
+
+  /* layout */
+  .layout { display: grid; grid-template-columns: 1fr; gap: 20px; padding-bottom: 72px; }
+  @media (min-width: 880px) { .layout { grid-template-columns: 5fr 7fr; gap: 24px; align-items: start; } }
+  .card { background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: 28px; }
+  .card.raised { box-shadow: var(--shadow-1); }
+  .card h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.25px; line-height: 1.27; margin-bottom: 18px; }
+
+  /* contact info */
+  .info { list-style: none; margin: 0; padding: 0; }
+  .info li { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .info li:first-child { border-top: 0; padding-top: 0; }
+  .tile { flex: none; width: 44px; height: 44px; border-radius: var(--r-lg); display: grid; place-items: center; }
+  .tile svg { width: 22px; height: 22px; }
+  .t-purple { background: var(--accent-purple); color: var(--accent-purple-deep); }
+  .t-teal { background: var(--accent-teal); color: #fff; }
+  .t-orange { background: var(--accent-orange); color: #fff; }
+  .t-sky { background: var(--accent-sky); color: #0b2a47; }
+  .info .label { font-size: 13px; color: var(--ink-muted); margin: 0; }
+  .info .value { margin: 0; font-weight: 600; word-break: break-all; }
+  .info .value a { color: var(--ink); text-underline-offset: 3px; }
+  .copy-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+  .utility-btn {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--hairline); border-radius: var(--r-md);
+    font: inherit; font-size: 15px; font-weight: 500; cursor: pointer; transition: transform .15s ease;
+  }
+  .utility-btn:active { transform: scale(0.95); }
+  .utility-btn svg { width: 16px; height: 16px; }
+  .copy-status { font-size: 13px; font-weight: 600; color: var(--ink); background: var(--canvas-soft); border-radius: var(--r-full); padding: 4px 10px; }
+  .copy-status:empty { display: none; }
+
+  /* form */
+  form { display: grid; gap: 22px; }
+  .field { display: grid; gap: 6px; }
+  label, legend { font-size: 15px; font-weight: 600; padding: 0; }
+  .req { color: var(--primary); margin-left: 3px; }
+  .opt { color: var(--ink-muted); font-weight: 400; font-size: 13px; margin-left: 6px; }
+  .help { color: var(--ink-muted); font-size: 13px; margin: 0; }
+  input[type="text"], input[type="email"], input[type="tel"], textarea {
+    width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--surface);
+    border: 1px solid var(--input-border); border-radius: var(--r-xs); padding: 10px 12px; min-height: 44px;
+    transition: box-shadow .15s ease, border-color .15s ease;
+  }
+  textarea { min-height: 150px; resize: vertical; }
+  input:focus, textarea:focus { outline: 2px solid var(--primary); outline-offset: 0; border-color: var(--primary); box-shadow: var(--shadow-1); }
+  [aria-invalid="true"] { border-color: var(--accent-orange) !important; }
+  .error { display: none; align-items: center; gap: 6px; color: var(--accent-orange-deep); font-size: 14px; font-weight: 500; margin: 0; }
+  .error.show { display: flex; }
+  .error svg { width: 16px; height: 16px; flex: none; }
+  .meta-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .count { font-size: 13px; color: var(--ink-muted); }
+
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .chips label {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: var(--r-md);
+    border: 1px solid var(--input-border); background: var(--surface); font-size: 15px; font-weight: 500; cursor: pointer;
+    transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .chips input:checked + label { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+  .chips input:focus-visible + label { outline: 3px solid var(--primary); outline-offset: 2px; }
+  fieldset[aria-invalid="true"] .chips label { border-color: var(--accent-orange); }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 28px;
+    border: 0; border-radius: var(--r-full); background: var(--primary); color: var(--on-primary);
+    font: inherit; font-size: 16px; font-weight: 500; cursor: pointer; transition: transform .15s ease, background-color .15s ease;
+  }
+  .btn-primary:active { background: var(--primary-active); transform: scale(0.9); }
+  .btn-primary:disabled { opacity: 0.6; cursor: default; }
+  .btn-primary svg { width: 18px; height: 18px; }
+  .actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+  .summary { display: none; background: var(--surface); border: 1px solid var(--hairline); border-left: 4px solid var(--accent-orange); border-radius: var(--r-md); padding: 16px 18px; }
+  .summary.show { display: block; }
+  .summary h3 { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: var(--accent-orange-deep); }
+  .summary ul { margin: 0; padding-left: 20px; }
+  .summary a { color: var(--ink); font-weight: 500; }
+  .success { display: none; align-items: flex-start; gap: 12px; background: var(--surface); border: 1px solid var(--hairline); border-left: 4px solid var(--accent-green); border-radius: var(--r-md); padding: 16px 18px; }
+  .success.show { display: flex; animation: rise .25s ease-out; }
+  .success svg { flex: none; width: 22px; height: 22px; margin-top: 2px; color: var(--accent-green); }
+  .success p { margin: 0; }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  footer { background: var(--canvas-soft); border-top: 1px solid var(--hairline); color: var(--ink-secondary); font-size: 14px; text-align: center; padding: 32px 0 40px; }
+
+  @media (max-width: 760px) { .stickers { display: none; } }
+  @media (max-width: 560px) {
+    .page-head { padding-top: 40px; }
+    .card { padding: 20px; }
+    .btn-primary { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#form-title">폼으로 바로가기</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">박신후</a>
+    <nav class="menu" aria-label="주 메뉴">
+      <a href="index.html">홈</a>
+      <a class="utility" href="contact.html" aria-current="page">Contact me</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="page-head">
+      <span class="badge">Contact me</span>
+      <h1>함께 일할 기회가 있다면 편하게 연락 주세요</h1>
+      <p class="lead">채용 제안, 면접 일정, 포트폴리오에 대한 질문 무엇이든 괜찮습니다. 내용을 확인하고 답장드리겠습니다.</p>
+      <div class="stickers" aria-hidden="true">
+        <span class="sticker s1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+        <span class="sticker s2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg></span>
+        <span class="sticker s3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7.5 12 12.5l8.7-5M12 22V12.5"/></svg></span>
+        <span class="sticker s4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+      </div>
+    </div>
+
+    <div class="layout">
+      <!-- 연락처 정보 -->
+      <aside class="card" aria-labelledby="info-title">
+        <h2 id="info-title">직접 연락하기</h2>
+        <ul class="info">
+          <li>
+            <span class="tile t-purple" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <div>
+              <p class="label">이메일</p>
+              <p class="value"><a href="mailto:pdy0113@naver.com">pdy0113@naver.com</a></p>
+              <div class="copy-row">
+                <button type="button" class="utility-btn" id="copy-btn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                  주소 복사
+                </button>
+                <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <span class="tile t-teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+            <div>
+              <p class="label">전화</p>
+              <p class="value"><a href="tel:01071835127">010-7183-5127</a></p>
+            </div>
+          </li>
+          <li>
+            <span class="tile t-orange" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7.5 12 12.5l8.7-5M12 22V12.5"/></svg></span>
+            <div>
+              <p class="label">지원 직무</p>
+              <p class="value">물류 사무 · 관리</p>
+            </div>
+          </li>
+          <li>
+            <span class="tile t-sky" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+            <div>
+              <p class="label">소속</p>
+              <p class="value">한국폴리텍대학 영남융합캠퍼스<br>스마트물류과 (2026.03 – 2026.11)</p>
+            </div>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- 문의 폼 -->
+      <section class="card raised" aria-labelledby="form-title">
+        <h2 id="form-title" tabindex="-1">메시지 남기기</h2>
+
+        <form id="contact-form" novalidate>
+          <div id="error-summary" class="summary" role="alert" tabindex="-1" aria-labelledby="summary-title">
+            <h3 id="summary-title">입력을 확인해 주세요</h3>
+            <ul id="summary-list"></ul>
+          </div>
+
+          <div class="field">
+            <label for="name">이름<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="홍길동" aria-describedby="name-error" required>
+            <p class="error" id="name-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="email">이메일<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="name@example.com" aria-describedby="email-help email-error" required>
+            <p class="help" id="email-help">답장을 받을 주소를 적어 주세요.</p>
+            <p class="error" id="email-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="phone">연락처<span class="opt">(선택)</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000">
+          </div>
+
+          <fieldset id="purpose-group" aria-describedby="purpose-error">
+            <legend>문의 유형<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></legend>
+            <div class="chips">
+              <input type="radio" name="purpose" id="p1" value="채용 제안"><label for="p1">채용 제안</label>
+              <input type="radio" name="purpose" id="p2" value="면접 일정"><label for="p2">면접 일정</label>
+              <input type="radio" name="purpose" id="p3" value="포트폴리오 문의"><label for="p3">포트폴리오 문의</label>
+              <input type="radio" name="purpose" id="p4" value="기타"><label for="p4">기타</label>
+            </div>
+            <p class="error" id="purpose-error"></p>
+          </fieldset>
+
+          <div class="field">
+            <div class="meta-row">
+              <label for="message">내용<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></label>
+              <span class="count" id="count" aria-hidden="true">0 / 1000</span>
+            </div>
+            <textarea id="message" name="message" maxlength="1000" placeholder="회사명, 직무, 희망 일정 등을 자유롭게 적어 주세요." aria-describedby="message-help message-error" required></textarea>
+            <p class="help" id="message-help">10자 이상 입력해 주세요.</p>
+            <p class="error" id="message-error"></p>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn-primary" id="submit-btn"><span id="submit-label">보내기</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <span class="help">보내 주신 이름·이메일·연락처는 답변 목적으로만 사용합니다.</span>
+          </div>
+
+          <!-- 스팸 함정 칸: 사람에게는 보이지 않습니다 -->
+          <div style="position:absolute;left:-9999px;" aria-hidden="true">
+            <label for="website">웹사이트(비워 두세요)</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div id="success" class="success" role="status" tabindex="-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+            <p></p>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>© 박신후 · Shinhoo Park</footer>
+
+<script>
+(function () {
+  var RECIPIENT = "pdy0113@naver.com";
+  // Supabase 연결: 프로젝트 URL과 anon(공개) 키를 넣으면 이 방식이 우선 사용됩니다.
+  // anon 키는 공개용 키입니다. service_role 키는 절대 여기에 넣지 마세요.
+  var SUPABASE_URL = "https://zrbhuszefzqrampwlzxi.supabase.co";
+  var SUPABASE_ANON_KEY = "sb_publishable_NUnIAdoQ548a03gOCCCzFQ_ZQqS4qKc";   // Publishable(공개) 키
+  var SUPABASE_TABLE = "contact_messages";
+
+  // (예전 방식) Google Apps Script 웹 앱 주소(.../exec). Supabase를 쓰면 비워도 됩니다. 둘 다 비면 메일 앱이 열립니다.
+  var SCRIPT_URL = "";
+
+  var form = document.getElementById("contact-form");
+  var summary = document.getElementById("error-summary");
+  var summaryList = document.getElementById("summary-list");
+  var success = document.getElementById("success");
+  var message = document.getElementById("message");
+  var count = document.getElementById("count");
+  var submitBtn = document.getElementById("submit-btn");
+  var submitLabel = document.getElementById("submit-label");
+
+  var ERR_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>';
+
+  function val(id) { return document.getElementById(id).value.trim(); }
+
+  var fields = {
+    name: {
+      label: "이름", focusId: "name", flag: function () { return document.getElementById("name"); },
+      check: function () { return val("name") ? "" : "이름을 입력해 주세요."; }
+    },
+    email: {
+      label: "이메일", focusId: "email", flag: function () { return document.getElementById("email"); },
+      check: function () {
+        var v = val("email");
+        if (!v) return "이메일을 입력해 주세요.";
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? "" : "이메일 형식이 올바르지 않습니다. 예: name@example.com";
+      }
+    },
+    purpose: {
+      label: "문의 유형", focusId: "p1", flag: function () { return document.getElementById("purpose-group"); },
+      check: function () { return form.querySelector('input[name="purpose"]:checked') ? "" : "문의 유형을 선택해 주세요."; }
+    },
+    message: {
+      label: "내용", focusId: "message", flag: function () { return document.getElementById("message"); },
+      check: function () {
+        var v = val("message");
+        if (!v) return "내용을 입력해 주세요.";
+        return v.length >= 10 ? "" : "내용을 10자 이상 입력해 주세요. (현재 " + v.length + "자)";
+      }
+    }
+  };
+
+  function showError(key, msg) {
+    var f = fields[key], err = document.getElementById(key + "-error"), el = f.flag();
+    if (msg) {
+      err.innerHTML = ERR_ICON + "<span></span>";
+      err.lastChild.textContent = msg;
+      err.classList.add("show");
+      el.setAttribute("aria-invalid", "true");
+    } else {
+      err.classList.remove("show");
+      err.innerHTML = "";
+      el.removeAttribute("aria-invalid");
+    }
+  }
+  function validateField(key) { var m = fields[key].check(); showError(key, m); return m; }
+
+  ["name", "email", "message"].forEach(function (key) {
+    var el = document.getElementById(key);
+    el.addEventListener("blur", function () { if (el.value.length) validateField(key); });
+    el.addEventListener("input", function () {
+      if (fields[key].flag().getAttribute("aria-invalid") === "true") validateField(key);
+    });
+  });
+  form.querySelectorAll('input[name="purpose"]').forEach(function (r) {
+    r.addEventListener("change", function () { validateField("purpose"); });
+  });
+  message.addEventListener("input", function () { count.textContent = message.value.length + " / 1000"; });
+
+  function renderSummary(errors) {
+    summaryList.innerHTML = "";
+    errors.forEach(function (e) {
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = "#" + fields[e.key].focusId;
+      a.textContent = fields[e.key].label + ": " + e.msg;
+      a.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        document.getElementById(fields[e.key].focusId).focus();
+      });
+      li.appendChild(a);
+      summaryList.appendChild(li);
+    });
+    summary.classList.add("show");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    success.classList.remove("show");
+    var errors = [];
+    Object.keys(fields).forEach(function (key) {
+      var msg = validateField(key);
+      if (msg) errors.push({ key: key, msg: msg });
+    });
+    if (errors.length) { renderSummary(errors); summary.focus(); return; }
+    summary.classList.remove("show");
+
+    var name = val("name"), email = val("email"), phone = val("phone");
+    var purpose = form.querySelector('input[name="purpose"]:checked').value;
+    var text = val("message");
+    var body = ["이름: " + name, "이메일: " + email, "연락처: " + (phone || "(미입력)"), "문의 유형: " + purpose, "", text].join("\n");
+    var subject = "[포트폴리오 문의] " + purpose + " - " + name;
+    var successText = success.querySelector("p");
+
+    function openMail(msg) {
+      window.location.href = "mailto:" + RECIPIENT + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      successText.textContent = msg;
+      success.classList.add("show");
+    }
+
+    // 스팸 함정 칸이 채워져 있으면 조용히 종료
+    if (form.elements["website"] && form.elements["website"].value) {
+      successText.textContent = "접수되었습니다.";
+      success.classList.add("show");
+      return;
+    }
+
+    var useSupabase = !!(SUPABASE_URL && SUPABASE_ANON_KEY);
+    if (!useSupabase && !SCRIPT_URL) {
+      openMail("이메일 앱을 열었습니다. 내용을 확인하고 전송 버튼을 눌러 주세요. 앱이 열리지 않으면 왼쪽의 주소 복사 버튼으로 직접 보내 주세요.");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    var oldLabel = submitLabel.textContent;
+    submitLabel.textContent = "보내는 중…";
+
+    var request;
+    if (useSupabase) {
+      // Supabase REST(PostgREST). 응답 상태를 읽을 수 있어서 저장 실패를 정확히 알 수 있습니다.
+      var headers = {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON_KEY,
+        "Prefer": "return=minimal"
+      };
+      // 예전 방식 anon 키(JWT, eyJ…)는 Authorization에도 필요하지만, sb_publishable_ 키는 apikey 헤더만 씁니다.
+      if (SUPABASE_ANON_KEY.indexOf("sb_") !== 0) headers["Authorization"] = "Bearer " + SUPABASE_ANON_KEY;
+      request = fetch(SUPABASE_URL.replace(/\/+$/, "") + "/rest/v1/" + SUPABASE_TABLE, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({ name: name, email: email, phone: phone, purpose: purpose, message: text })
+      }).then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+      });
+    } else {
+      // (예전 방식) Apps Script 웹 앱은 다른 출처라 응답 내용을 읽을 수 없습니다(no-cors).
+      var data = new URLSearchParams();
+      data.append("name", name);
+      data.append("email", email);
+      data.append("phone", phone);
+      data.append("purpose", purpose);
+      data.append("message", text);
+      request = fetch(SCRIPT_URL, { method: "POST", mode: "no-cors", body: data });
+    }
+
+    request
+      .then(function () {
+        successText.textContent = "접수되었습니다. 확인 후 답장드리겠습니다.";
+        success.classList.add("show");
+        form.reset();
+        count.textContent = "0 / 1000";
+        success.focus();
+      })
+      .catch(function () {
+        openMail("전송에 실패해서 이메일 앱을 열었습니다. 내용을 확인하고 전송 버튼을 눌러 주세요.");
+      })
+      .then(function () {
+        submitBtn.disabled = false;
+        submitLabel.textContent = oldLabel;
+      });
+  });
+
+  // 이메일 주소 복사
+  var copyBtn = document.getElementById("copy-btn");
+  var copyStatus = document.getElementById("copy-status");
+  var timer;
+  copyBtn.addEventListener("click", function () {
+    function done(ok) {
+      copyStatus.textContent = ok ? "복사했습니다" : "복사하지 못했습니다. 직접 선택해 주세요";
+      clearTimeout(timer);
+      timer = setTimeout(function () { copyStatus.textContent = ""; }, 2500);
+    }
+    try {
+      navigator.clipboard.writeText(RECIPIENT).then(function () { done(true); }, function () { done(false); });
+    } catch (err) { done(false); }
+  });
+})();
+</script>
+</body>
+</html>
